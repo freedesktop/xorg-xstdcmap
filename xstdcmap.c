@@ -370,4 +370,6 @@ main(int argc, char *argv[])
 		    "Not all new colormap definitions will be retained.\n");
     }
     Exit((status == 0) ? 1 : 0);
+    /* Muffle compiler */
+    return 0;
 }
