@@ -26,16 +26,16 @@ in this Software without prior written authorization from The Open Group.
  * *
  * Author:  Donna Converse, MIT X Consortium
  */
+/* $XFree86: xc/programs/xstdcmap/xstdcmap.c,v 1.8 2001/12/14 20:02:30 dawes Exp $ */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <X11/Xos.h>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 #include <X11/Xresource.h>
 #include <X11/Xatom.h>
 #include <X11/Xmu/StdCmap.h>
-
-extern void exit();
 
 #define REPLACE		1
 #define DO_NOT_REPLACE  0
@@ -107,9 +107,10 @@ static XrmOptionDescRec optionTable[]=
 };
 #define NOPTIONS (sizeof optionTable / sizeof optionTable[0])
 
-static void parse(argc, argv)
-    int		argc;
-    char	**argv;
+static void usage(Status status);
+
+static void 
+parse(int argc, char **argv)
 {
     XrmDatabase		database = NULL;
     char		*type;
@@ -179,16 +180,16 @@ static void parse(argc, argv)
 	verbose++;
 }
 
-Exit(status)
-    Status	status;
+static void
+Exit(Status status)
 {
     if (dpy)
 	XCloseDisplay(dpy);
     exit(status);
 }
 
-usage(status)
-    Status		status;
+static void
+usage(Status status)
 {
     register char	**i;
     (void) fprintf(stderr, "usage:  %s [-options]\n\n", program_name);
@@ -201,10 +202,10 @@ usage(status)
 /* Determine the visual of greatest depth in a given visual class.
  * If no such visual exists, return NULL.  
  */
-static XVisualInfo *getDeepestVisual(visual_class, vinfo, nvisuals)
-    int		visual_class;	/* specifies the desired visual class */
-    XVisualInfo	*vinfo;		/* specifies all visuals for a screen */
-    int		nvisuals;	/* specifies number of visuals in the list */
+static XVisualInfo *
+getDeepestVisual(int visual_class,   /* specifies the desired visual class */
+		 XVisualInfo *vinfo, /* specifies all visuals for a screen */
+		 int nvisuals)	/* specifies number of visuals in the list */
 {
     register int	i;
     unsigned int	maxdepth = 0;
@@ -222,10 +223,10 @@ static XVisualInfo *getDeepestVisual(visual_class, vinfo, nvisuals)
 /* Determine the ``best'' visual of the screen for a standard colormap
  * property.  Return NULL if no visual is appropriate.
  */
-static XVisualInfo *getBestVisual(property, vinfo, nvisuals)
-    Atom	property;	/* specifies the standard colormap */
-    XVisualInfo *vinfo;		/* specifies all visuals of the screen */
-    int		nvisuals;	/* specifies number of visuals of screen */
+static XVisualInfo *
+getBestVisual(Atom property,	/* specifies the standard colormap */
+	      XVisualInfo *vinfo, /* specifies all visuals of the screen */
+	      int nvisuals)	/* specifies number of visuals of screen */
 {	
     XVisualInfo	*v1 = NULL, *v2 = NULL;
 
@@ -253,8 +254,8 @@ static XVisualInfo *getBestVisual(property, vinfo, nvisuals)
 
 }
 
-static char *visualStringFromClass(class)
-    int	class;
+static char *
+visualStringFromClass(int class)
 {
     switch (class) {
       case PseudoColor: return "PseudoColor";
@@ -267,10 +268,11 @@ static char *visualStringFromClass(class)
     return "unknown visual class";
 }
 
-static int doIndividualColormaps()
+static int 
+doIndividualColormaps(void)
 {
     int			i, screen, nvisuals;
-    Status		status;
+    Status		status = -1;
     XVisualInfo		*vinfo = NULL, *v = NULL, template;
     
     screen = DefaultScreen(dpy);
@@ -325,9 +327,8 @@ static int doIndividualColormaps()
 }
 
 /* Bare bones standard colormap generation utility */
-main(argc, argv)
-    int		argc;
-    char	**argv;
+int
+main(int argc, char *argv[])
 {
     Status	status = 0;
 
