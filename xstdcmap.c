@@ -26,7 +26,7 @@ in this Software without prior written authorization from The Open Group.
  * *
  * Author:  Donna Converse, MIT X Consortium
  */
-/* $XFree86: xc/programs/xstdcmap/xstdcmap.c,v 1.8tsi Exp $ */
+/* $XFree86: xc/programs/xstdcmap/xstdcmap.c,v 1.9 2003/03/26 20:44:00 tsi Exp $ */
 
 #include <stdio.h>
 #include <stdlib.h>
