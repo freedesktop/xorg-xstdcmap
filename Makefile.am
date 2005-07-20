@@ -21,8 +21,8 @@
 
 bin_PROGRAMS = xstdcmap
 
-xstdcmap_CFLAGS = $(DEP_CFLAGS) -D_BSD_SOURCE
-xstdcmap_LDADD = $(DEP_LIBS)
+xstdcmap_CFLAGS = $(XSTDCMAP_CFLAGS) -D_BSD_SOURCE
+xstdcmap_LDADD = $(XSTDCMAP_LIBS)
 
 xstdcmap_SOURCES =	\
         xstdcmap.c
