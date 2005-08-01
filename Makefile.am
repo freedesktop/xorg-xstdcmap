@@ -27,6 +27,6 @@ xstdcmap_LDADD = $(XSTDCMAP_LIBS)
 xstdcmap_SOURCES =	\
         xstdcmap.c
 
-dist_man_MANS = \
+dist_man1_MANS = \
         xstdcmap.man
 
