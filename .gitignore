@@ -18,3 +18,7 @@ stamp-h1
 xstdcmap
 xstdcmap.1
 *~
+*.o
+xstdcmap-*.tar.*
+ChangeLog
+tags
