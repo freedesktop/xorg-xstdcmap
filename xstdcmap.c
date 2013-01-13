@@ -81,21 +81,18 @@ static colormap_property propertyTable[]=
 #define GREEN	4
 #define BLUE	5
 
-static char	*usage_message[]=
-{
-"    -all               make all standard colormaps for the display",
-"    -best              make the RGB_BEST_MAP",
-"    -blue              make the RGB_BLUE_MAP",
-"    -default           make the RGB_DEFAULT_MAP",
-"    -delete name       remove a standard colormap",
-"    -display dpy       X server to use",
-"    -gray              make the RGB_GRAY_MAP",
-"    -green             make the RGB_GREEN_MAP",
-"    -red               make the RGB_RED_MAP",
-"    -verbose           turn on logging",
-"    -version           print version info",
-"",
-NULL };
+static const char	*usage_message =
+    "    -all               make all standard colormaps for the display\n"
+    "    -best              make the RGB_BEST_MAP\n"
+    "    -blue              make the RGB_BLUE_MAP\n"
+    "    -default           make the RGB_DEFAULT_MAP\n"
+    "    -delete name       remove a standard colormap\n"
+    "    -display dpy       X server to use\n"
+    "    -gray              make the RGB_GRAY_MAP\n"
+    "    -green             make the RGB_GREEN_MAP\n"
+    "    -red               make the RGB_RED_MAP\n"
+    "    -verbose           turn on logging\n"
+    "    -version           print version info\n";
 
 static XrmOptionDescRec optionTable[]=
 {
@@ -202,11 +199,8 @@ Exit(Status status)
 static void  _X_NORETURN
 usage(Status status)
 {
-    register char	**i;
     (void) fprintf(stderr, "usage:  %s [-options]\n\n", program_name);
-    (void) fprintf(stderr, "where options include:\n");
-    for (i = usage_message; *i != NULL; i++)
-	(void) fprintf(stderr, "%s\n", *i);
+    (void) fprintf(stderr, "where options include:\n%s\n", usage_message);
     Exit(status);
 }
 
