@@ -44,7 +44,7 @@ xstdcmap - X standard colormap utility
 .SH SYNOPSIS
 .B xstdcmap
 [-all] [-best] [-blue] [-default] [-delete \fImap\fP] [-display \fIdisplay\fP]
-[-gray] [-green] [-help] [-red] [-verbose]
+[-gray] [-green] [-help] [-red] [-verbose] [-version]
 .SH DESCRIPTION
 .PP
 The \fIxstdcmap\fP utility can be used to selectively define standard colormap
@@ -100,6 +100,9 @@ This option indicates that the RGB_RED_MAP should be defined.
 This option indicates that \fIxstdcmap\fP should
 print logging information as it parses its input and defines the
 standard colormap properties.
+.TP 8
+.B \-version
+This option indicates that \fIxstdcmap\fP should print its version and exit.
 .SH ENVIRONMENT
 .PP
 .TP 8

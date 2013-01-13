@@ -28,6 +28,10 @@ in this Software without prior written authorization from The Open Group.
  */
 /* $XFree86: xc/programs/xstdcmap/xstdcmap.c,v 1.8tsi Exp $ */
 
+#ifdef HAVE_CONFIG_H
+# include "config.h"
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <X11/Xos.h>
@@ -47,6 +51,7 @@ static char		*program_name = NULL;
 static Bool		all = 0;
 static Bool		help = 0;
 static Bool 		verbose = 0;
+static Bool 		version = 0;
 static Display		*dpy = NULL;
 
 typedef struct
@@ -88,6 +93,7 @@ static char	*usage_message[]=
 "    -green             make the RGB_GREEN_MAP",
 "    -red               make the RGB_RED_MAP",
 "    -verbose           turn on logging",
+"    -version           print version info",
 "",
 NULL };
 
@@ -104,6 +110,7 @@ static XrmOptionDescRec optionTable[]=
 {"-help",	".help",        XrmoptionNoArg,		(caddr_t) "on"},
 {"-red",	".red",		XrmoptionNoArg,		(caddr_t) "on"},
 {"-verbose",	".verbose",	XrmoptionNoArg,		(caddr_t) "on"},
+{"-version",	".version",	XrmoptionNoArg,		(caddr_t) "on"},
 };
 #define NOPTIONS (sizeof optionTable / sizeof optionTable[0])
 
@@ -178,6 +185,10 @@ parse(int argc, char **argv)
     snprintf(option, sizeof(option), "%s%s", program_name, ".verbose");
     if (XrmGetResource(database, option, (char *) NULL, &type, &value))
 	verbose++;
+
+    snprintf(option, sizeof(option), "%s%s", program_name, ".version");
+    if (XrmGetResource(database, option, (char *) NULL, &type, &value))
+	version++;
 }
 
 static void _X_NORETURN
@@ -341,6 +352,11 @@ main(int argc, char *argv[])
 
     if (help) {
 	usage(0);
+    }
+
+    if (version) {
+        printf("%s\n", PACKAGE_STRING);
+        exit(0);
     }
 
     if ((dpy = XOpenDisplay(display_name)) == NULL) {
