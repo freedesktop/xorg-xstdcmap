@@ -339,14 +339,14 @@ main(int argc, char *argv[])
 
     parse(argc, argv);
 
+    if (help) {
+	usage(0);
+    }
+
     if ((dpy = XOpenDisplay(display_name)) == NULL) {
 	(void) fprintf(stderr, "%s: cannot open display \"%s\".\n",
 		       program_name, XDisplayName(display_name));
 	exit(1);
-    }
-
-    if (help) {
-	usage(0);
     }
 
     if (all) {
