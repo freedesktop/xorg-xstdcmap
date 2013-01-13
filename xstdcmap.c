@@ -180,7 +180,7 @@ parse(int argc, char **argv)
 	verbose++;
 }
 
-static void
+static void _X_NORETURN
 Exit(Status status)
 {
     if (dpy)
@@ -188,7 +188,7 @@ Exit(Status status)
     exit(status);
 }
 
-static void
+static void  _X_NORETURN
 usage(Status status)
 {
     register char	**i;
@@ -347,10 +347,6 @@ main(int argc, char *argv[])
 
     if (help) {
 	usage(0);
-	Exit(0);
-
-	/* Muffle gcc */
-	return 0;
     }
 
     if (all) {
@@ -370,6 +366,4 @@ main(int argc, char *argv[])
 		    "Not all new colormap definitions will be retained.\n");
     }
     Exit((status == 0) ? 1 : 0);
-    /* Muffle compiler */
-    return 0;
 }
