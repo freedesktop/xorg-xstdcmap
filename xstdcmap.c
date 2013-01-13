@@ -59,8 +59,8 @@ typedef struct
     Bool	create;
     Bool	delete;
     Atom	property;
-    char	*name;
-    char	*nickname;
+    const char	*name;
+    const char	*nickname;
 } colormap_property;
 
 static colormap_property propertyTable[]=
@@ -259,7 +259,7 @@ getBestVisual(Atom property,	/* specifies the standard colormap */
 
 }
 
-static char *
+static const char *
 visualStringFromClass(int class)
 {
     switch (class) {
