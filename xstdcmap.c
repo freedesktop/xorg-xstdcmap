@@ -126,23 +126,23 @@ parse(int argc, char **argv)
     if (--argc)
 	usage(1);
 
-    (void) sprintf(option, "%s%s", program_name, ".all");
+    snprintf(option, sizeof(option), "%s%s", program_name, ".all");
     if (XrmGetResource(database, option, (char *) NULL, &type, &value))
     	all++;
 
-    (void) sprintf(option, "%s%s", program_name, ".best");
+    snprintf(option, sizeof(option), "%s%s", program_name, ".best");
     if (XrmGetResource(database, option, (char *) NULL, &type, &value))
     	propertyTable[BEST].create++;
 
-    (void) sprintf(option, "%s%s", program_name, ".blue");
+    snprintf(option, sizeof(option), "%s%s", program_name, ".blue");
     if (XrmGetResource(database, option, (char *) NULL, &type, &value))
 	propertyTable[BLUE].create++;
 
-    (void) sprintf(option, "%s%s", program_name, ".default");
+    snprintf(option, sizeof(option), "%s%s", program_name, ".default");
     if (XrmGetResource(database, option, (char *) NULL, &type, &value))
 	propertyTable[DEFAULT].create++;
 
-    (void) sprintf(option, "%s%s", program_name, ".delete");
+    snprintf(option, sizeof(option), "%s%s", program_name, ".delete");
     if (XrmGetResource(database, option, (char *) NULL, &type, &value)) {
 	register int i;
 	for (i=0; i < NPROPERTIES; i++) {
@@ -155,27 +155,27 @@ parse(int argc, char **argv)
 	}
     }
 		
-    (void) sprintf(option, "%s%s", program_name, ".display");
+    snprintf(option, sizeof(option), "%s%s", program_name, ".display");
     if (XrmGetResource(database, option, (char *) NULL, &type, &value))
 	display_name = value.addr;
 
-    (void) sprintf(option, "%s%s", program_name, ".gray");
+    snprintf(option, sizeof(option), "%s%s", program_name, ".gray");
     if (XrmGetResource(database, option, (char *) NULL, &type, &value))
 	propertyTable[GRAY].create++;
 
-    (void) sprintf(option, "%s%s", program_name, ".green");
+    snprintf(option, sizeof(option), "%s%s", program_name, ".green");
     if (XrmGetResource(database, option, (char *) NULL, &type, &value))
 	propertyTable[GREEN].create++;
 
-    (void) sprintf(option, "%s%s", program_name, ".help");
+    snprintf(option, sizeof(option), "%s%s", program_name, ".help");
     if (XrmGetResource(database, option, (char *) NULL, &type, &value))
 	help++;
 
-    (void) sprintf(option, "%s%s", program_name, ".red");
+    snprintf(option, sizeof(option), "%s%s", program_name, ".red");
     if (XrmGetResource(database, option, (char *) NULL, &type, &value))
 	propertyTable[RED].create++;
 
-    (void) sprintf(option, "%s%s", program_name, ".verbose");
+    snprintf(option, sizeof(option), "%s%s", program_name, ".verbose");
     if (XrmGetResource(database, option, (char *) NULL, &type, &value))
 	verbose++;
 }
