@@ -86,7 +86,7 @@ static const char	*usage_message =
     "    -best              make the RGB_BEST_MAP\n"
     "    -blue              make the RGB_BLUE_MAP\n"
     "    -default           make the RGB_DEFAULT_MAP\n"
-    "    -delete name       remove a standard colormap\n"
+    "    -delete map        remove a standard colormap\n"
     "    -display dpy       X server to use\n"
     "    -gray              make the RGB_GRAY_MAP\n"
     "    -green             make the RGB_GREEN_MAP\n"
